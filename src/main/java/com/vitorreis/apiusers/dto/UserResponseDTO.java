@@ -1,7 +1,9 @@
 package com.vitorreis.apiusers.dto;
 
+import java.util.UUID;
+
 public record UserResponseDTO(
-        Integer id,
+        UUID id,
         String name,
         String email,
         Integer idade

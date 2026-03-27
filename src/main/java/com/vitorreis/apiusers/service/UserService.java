@@ -1,7 +1,6 @@
 package com.vitorreis.apiusers.service;
 
 import com.vitorreis.apiusers.model.user.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -55,10 +54,12 @@ public class UserService {
 
     }
 
-    public void removeUser(UUID id){
+    public UUID removeUser(UUID id){
 
         User user = findById(id);
         bd.remove(user);
+
+        return id;
     }
 
 }
