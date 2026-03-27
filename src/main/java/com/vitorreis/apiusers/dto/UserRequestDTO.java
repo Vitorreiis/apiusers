@@ -1,4 +1,10 @@
 package com.vitorreis.apiusers.dto;
 
-public record UserRequestDTO(String name, String password, String email, Integer idade) {
-}
+import org.antlr.v4.runtime.misc.NotNull;
+
+public record UserRequestDTO(
+        String name,
+        String password,
+        String email,
+        Integer idade
+) {}

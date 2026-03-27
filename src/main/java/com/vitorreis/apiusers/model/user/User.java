@@ -1,10 +1,12 @@
 package com.vitorreis.apiusers.model.user;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class User {
 
-    private Integer id;
+    private UUID id;
+
     private String name;
     private String email;
     private String password;
@@ -14,7 +16,7 @@ public class User {
     }
 
 
-    public User(Integer id, String name, String password, String email, Integer age) {
+    public User(UUID id, String name, String password, String email, Integer age) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -22,7 +24,7 @@ public class User {
         this.age = age;
     }
 
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
@@ -42,7 +44,7 @@ public class User {
         return age;
     }
 
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

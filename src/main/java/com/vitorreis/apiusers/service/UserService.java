@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -15,6 +16,11 @@ public class UserService {
     public User createUser(String name, String password, String email, Integer age){
         User newUser = new User();
 
+        if (name == null || password == null || email == null || age == null) {
+            throw new RuntimeException("Todos os campos são obrigatórios");
+        }
+
+        newUser.setId(UUID.randomUUID());
         newUser.setName(name);
         newUser.setPassword(password);
         newUser.setEmail(email);
@@ -26,22 +32,19 @@ public class UserService {
     }
 
     public List<User> findAll() {
+
         return bd;
     }
 
-    public User findById(Integer id) {
+    public User findById(UUID id) {
         return bd.stream()
-                .filter(user -> user.getId().equals(id))
+                .filter(user -> id.equals(user.getId()))
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
     }
 
-    public User updateUser(Integer id, String name, String password, String email, Integer age){
+    public User updateUser(UUID id, String name, String password, String email, Integer age){
         User newUser = findById(id);
-
-        if (newUser == null) {
-            throw new RuntimeException("Usuário não encontrado");
-        }
 
         newUser.setName(name);
         newUser.setPassword(password);
@@ -52,13 +55,9 @@ public class UserService {
 
     }
 
-    public void removeUser(Integer id){
+    public void removeUser(UUID id){
 
         User user = findById(id);
-
-        if(user == null){
-            throw new RuntimeException("Usuário não encontrado");
-        }
         bd.remove(user);
     }
 
