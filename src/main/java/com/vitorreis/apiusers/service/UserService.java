@@ -33,7 +33,7 @@ public class UserService {
         return bd.stream()
                 .filter(user -> user.getId().equals(id))
                 .findFirst()
-                .orElse(null);
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
     }
 
     public User updateUser(Integer id, String name, String password, String email, Integer age){
@@ -55,6 +55,10 @@ public class UserService {
     public void removeUser(Integer id){
 
         User user = findById(id);
+
+        if(user == null){
+            throw new RuntimeException("Usuário não encontrado");
+        }
         bd.remove(user);
     }
 
