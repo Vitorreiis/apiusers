@@ -1,0 +1,40 @@
+package com.vitorreis.apiusers.exceptions;
+
+import java.time.LocalDateTime;
+
+public class ErrorResponse {
+
+    private String message;
+    private int status;
+    private LocalDateTime timestamp;
+
+    public ErrorResponse(String message, int status, LocalDateTime timestamp) {
+        this.message = message;
+        this.status = status;
+        this.timestamp = timestamp;
+    }
+
+    public String getMmensage() {
+        return message;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public void setMmensage(String mmensage) {
+        this.message = mmensage;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
+    }
+}

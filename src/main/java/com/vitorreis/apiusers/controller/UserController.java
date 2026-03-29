@@ -3,6 +3,7 @@ package com.vitorreis.apiusers.controller;
 import com.vitorreis.apiusers.dto.UserRequestDTO;
 import com.vitorreis.apiusers.dto.UserResponseDTO;
 import com.vitorreis.apiusers.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,14 +31,14 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserResponseDTO> postUser(@RequestBody UserRequestDTO request){
+    public ResponseEntity<UserResponseDTO> postUser(@RequestBody @Valid UserRequestDTO request){
 
         UserResponseDTO newUser = userService.createUser(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserResponseDTO> putUser(@PathVariable UUID id, @RequestBody UserRequestDTO request){
+    public ResponseEntity<UserResponseDTO> putUser(@PathVariable UUID id, @RequestBody @Valid UserRequestDTO request){
 
         UserResponseDTO user = userService.updateUser(id, request);
         return ResponseEntity.ok(user);
