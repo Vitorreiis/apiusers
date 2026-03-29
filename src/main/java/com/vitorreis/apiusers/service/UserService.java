@@ -1,5 +1,7 @@
 package com.vitorreis.apiusers.service;
 
+import com.vitorreis.apiusers.dto.UserRequestDTO;
+import com.vitorreis.apiusers.dto.UserResponseDTO;
 import com.vitorreis.apiusers.model.user.User;
 import org.springframework.stereotype.Service;
 
@@ -12,54 +14,69 @@ public class UserService {
 
     private List<User> bd = new ArrayList<>();
 
-    public User createUser(String name, String password, String email, Integer age){
+    public UserResponseDTO createUser(UserRequestDTO request){
         User newUser = new User();
 
-        if (name == null || password == null || email == null || age == null) {
+        if (request.name() == null || request.password() == null || request.email() == null || request.age() == null) {
             throw new RuntimeException("Todos os campos são obrigatórios");
         }
 
         newUser.setId(UUID.randomUUID());
-        newUser.setName(name);
-        newUser.setPassword(password);
-        newUser.setEmail(email);
-        newUser.setAge(age);
+        newUser.setName(request.name());
+        newUser.setPassword(request.password());
+        newUser.setEmail(request.email());
+        newUser.setAge(request.age());
 
         bd.add(newUser);
 
-        return newUser;
+        return toResponseDTO(newUser);
     }
 
-    public List<User> findAll() {
-
-        return bd;
-    }
-
-    public User findById(UUID id) {
+    public List<UserResponseDTO> findAll() {
         return bd.stream()
-                .filter(user -> id.equals(user.getId()))
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+                .map(this::toResponseDTO)
+                .toList();
     }
 
-    public User updateUser(UUID id, String name, String password, String email, Integer age){
-        User newUser = findById(id);
+    public UserResponseDTO findById(UUID id) {
+        User user = findEntityById(id);
+        return toResponseDTO(user);
+    }
 
-        newUser.setName(name);
-        newUser.setPassword(password);
-        newUser.setEmail(email);
-        newUser.setAge(age);
+    public UserResponseDTO updateUser(UUID id, UserRequestDTO request){
+        User newUser = findEntityById(id);
 
-        return newUser;
+        newUser.setName(request.name());
+        newUser.setPassword(request.password());
+        newUser.setEmail(request.email());
+        newUser.setAge(request.age());
+
+        return toResponseDTO(newUser);
 
     }
 
     public UUID removeUser(UUID id){
 
-        User user = findById(id);
+        User user = findEntityById(id);
         bd.remove(user);
 
         return id;
+    }
+
+    public UserResponseDTO toResponseDTO(User user){
+        return new UserResponseDTO(
+                user.getId(),
+                user.getName(),
+                user.getEmail(),
+                user.getAge()
+        );
+    }
+
+    public User findEntityById(UUID id) {
+        return bd.stream()
+                .filter(user -> id.equals(user.getId()))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
     }
 
 }
