@@ -6,5 +6,5 @@ public record UserResponseDTO(
         UUID id,
         String name,
         String email,
-        Integer idade
+        Integer age
 ) {}

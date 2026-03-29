@@ -14,7 +14,7 @@ public class ErrorResponse {
         this.timestamp = timestamp;
     }
 
-    public String getMmensage() {
+    public String getMessage() {
         return message;
     }
 
@@ -26,8 +26,8 @@ public class ErrorResponse {
         return timestamp;
     }
 
-    public void setMmensage(String mmensage) {
-        this.message = mmensage;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public void setStatus(int status) {
