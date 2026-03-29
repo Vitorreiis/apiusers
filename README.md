@@ -18,15 +18,10 @@ O projeto foi criado com o objetivo de praticar conceitos fundamentais de backen
 
 
 # Estrutura do projeto
-src/main/java
-├── controller
-├── service
-├── model
-├── dto
-└── exceptions
+<img width="201" height="174" alt="image" src="https://github.com/user-attachments/assets/be68a67d-af30-4b31-95fb-ec0848dc373d" />
+
 
 🔌 Endpoints da API
-➕ Criar usuário
 
 POST /users
 
