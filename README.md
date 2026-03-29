@@ -90,13 +90,13 @@ Não há integração com banco de dados neste projeto.
  - Testes automatizados
 
  # Como executar o projeto
- ## Clone o repositório:
+ ### Clone o repositório:
 git clone https://github.com/Vitorreiis/apiusers.git
- ## Acesse o projeto:
+ ### Acesse o projeto:
 cd apiusers
- ## Execute a aplicação:
+ ### Execute a aplicação:
 ./mvnw spring-boot:run
- ## A API estará disponível em:
+ ### A API estará disponível em:
 http://localhost:8080
 
 # Licença
