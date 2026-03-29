@@ -105,4 +105,6 @@ Este projeto é apenas para fins educacionais.
 
 # Autor
 
-Vitor Reis
+Vitor Reis - https://www.linkedin.com/in/vitor-reis-4a595b20a/
+
+
